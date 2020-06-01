@@ -1,0 +1,111 @@
+<link href="/css/UserHomePage.css" rel="stylesheet">
+<link href="/css/Posts.css" rel="stylesheet">
+<!------ Include the above in your HEAD tag ---------->
+
+<nav id="mainNav" class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top">
+    <div class="container">
+
+        <a id="home" class="navbar-brand js-scroll-trigger" href="" onclick="backToHome();">Home</a>
+
+        <script>
+            function backToHome() {
+                let url_path = document.location.pathname;
+                url_path = url_path.substr(6);
+                document.getElementById("home").href = "/homepage" + url_path;
+            }
+        </script>
+
+        <script>
+            function toPosts() {
+                let url_path = document.location.pathname;
+                url_path = url_path.substr(6);
+                document.getElementById("getPosts").href = "/posts" + url_path;
+            }
+        </script>
+
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li id="allPosts" class="nav-item mx-0 mx-lg-1"><a id="getPosts"
+                        class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">Posts</a></li>
+                <li id="settings" class="nav-item mx-0 mx-lg-1" onclick="toPosts();"><a id="settingsButton"
+                        class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=""
+                        onclick="refreshSettings();">Settings</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a id="logout" data-toggle="modal" data-target="#exampleModal"
+                        class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">Log out</a></li>
+            </ul>
+        </div>
+
+        <script>
+            function refreshSettings() {
+                let url_path = document.location.pathname;
+                url_path = url_path.substr(6);
+                document.getElementById("settingsButton").href = "/settings" + url_path;
+            }
+        </script>
+
+    </div>
+</nav>
+
+
+<div id="posts" class="container">
+
+
+    <div class="row">
+
+        {{#each posts}}
+
+        <div class="col-md-4" style="word-break: break-all;">
+            <div class="single-blog-item">
+
+                <a id="{{@index}}-delete" type="button" href="/{{@index}}-delete" class="close" aria-label="Close" onclick="uniqueDelete();">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+
+                <div class="blog-content">
+                    <h3 style="text-transform: none;">{{this.title}}</h3>
+                    <h4 style="text-transform: none;">Date: {{this.date}}</h4>
+                    <p style="color: black;">{{this.post}}</p>
+                    <a id={{@index}} href="/{{@index}}" onclick="uniquePost();" class="more-btn"
+                        style="margin-top: -1%;">Edit Post</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <p class="empty font-weight-normal" style="font-size: 3vw;">OOF! You currently have no posts. Why not make a
+            post? It's fun.</p>
+
+        {{/each}}
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+
+        function uniquePost() {
+            const postsCount = $(".col-md-4").length;
+            for (i = 0; i < postsCount; i++) {
+                let url_path = document.location.pathname;
+                url_path = url_path.substr(6);
+                document.getElementById(i).href = document.getElementById(i).href + url_path;
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript">
+
+        function uniqueDelete() {
+            const postsCount = $(".col-md-4").length;
+            for (i = 0; i < postsCount; i++) {
+                let url_path = document.location.pathname;
+                url_path = url_path.substr(6);
+                document.getElementById(i.toString() + "-delete").href =  document.getElementById(i).href + url_path + "/delete";
+            }
+        }
+
+    </script>
+
+
+
+</div>

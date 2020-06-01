@@ -1,0 +1,34 @@
+<link href = "/css/Error.css">
+
+<body onload="change();">
+<div id = "page" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                <h2 id = "message">
+                    {{ message }}</h2>
+                <div class="error-details">
+
+                    {{ error }}
+                </div>
+
+                <a id = "backToLogin" href = "/login" type="button" class="btn btn-primary m-3">Back to Login</a>
+
+                <script>
+                    function change() {
+                        if (document.getElementById("message").innerHTML.trim() == "Your previous data has already been deleted") {
+                            document.getElementById("backToLogin").style.visibility = "visible";
+                        } else {
+                            document.getElementById("backToLogin").style.visibility = "hidden";
+                        }
+
+
+                    }
+                </script>
+
+        </div>
+    </div>
+</div>
+</body>

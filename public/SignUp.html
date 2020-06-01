@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+		<title>Sign Up</title>
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+		<!-- Core theme CSS (includes Bootstrap)-->
+		<link rel = "stylesheet" href = "/css/SignUp.css"> 
+		<link rel = "stylesheet" href = "/css/styles.css">
+	</head>
+	<body>
+		<nav id="mainNav" class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top">
+			<div class="container">
+				<a class="navbar-brand js-scroll-trigger" href="/">InstaJournal</a>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li id = "logIn" class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/login">Log in</a></li>
+						<li id = "signUp" class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/signup">Sign up</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="signup-form" class = "wrapper fadeInDown">
+			<form action="/SignUp" method="POST">
+				<h2 id = "signUp">Sign Up</h2>
+				<p>Please fill in this form to create an account!</p>
+				<hr>
+				<div class="form-group">
+					<div class="row">
+						<div id = "first" class="col-xs-6"><input type="text" class="form-control" name="username" placeholder="Username" required="required"></div>
+					</div>        	
+				</div>
+				<div class="form-group" class = "fadeIn">
+					<input type="email" class="form-control" name="email" placeholder="Email" required="required"">
+				</div>
+				<div class="form-group" class = "fadeIn">
+					<input id = "userPassword" type="password" class="form-control" name="password" pattern=".{8,}" placeholder="Password" required="required">
+				</div>
+				<script>
+						if (document.getElementById("userPassword").value.length < 8) {
+							document.getElementById("userPassword").style.oninvalid = this.setCustomValidity('Password must be at least 8 characters');
+						}
+
+				</script>
+
+
+				<div class="form-group" class = "fadeIn">
+					<input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+				</div>        
+				<div class="form-group" class = "fadeIn">
+					<label class="checkbox-inline"><input type="checkbox" required="required"> By creating an account, I accept the conditions of the <a href = "https://www.ola.org/sites/default/files/node-files/bill/document/pdf/2018/2018-03/bill---text-41-3-en-b014_e.pdf" target = "_blank">Personal Information Protection and Electronic Documents Act.</a></label>
+				</div>
+				<div class="form-group" class = "fadeIn">
+					<button type="submit" id = "submit-button" class="btn btn-primary btn-lg">Sign Up</button>
+				</div>
+			</form>
+			<div id = "back-login" class="hint-text">Already have an account? <a href="Login.html">Login here</a></div>
+		</div>
+	</body>
+</html>     
