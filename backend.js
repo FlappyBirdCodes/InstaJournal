@@ -10,8 +10,10 @@ const PORT = process.env.PORT || 3000;
 app.engine("handlebars", expbs());
 app.set("view engine", "handlebars");
 
+const MongoDB_URL = "mongodb+srv://FlappyBird:patrickpatterson333@instajournalusers-v7lqv.mongodb.net/test?retryWrites=true&w=majority";
+
 //Connecting to mongodb database
-mongoose.connect("mongodb://localhost/InstaJournalUsers", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(MongoDB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("MongoDB database connection established successfully");
@@ -54,11 +56,12 @@ app.use(["/homepage/:username", "/settings/:username", "/posts/:username", "/:id
 app.use("/settings/:username", (req, res, next) => {
     User.find( {username: req.decoded_username}, (err, docs) => {
         if (docs.length == 1) {
+            console.log("working")
             req.user_email = docs[0].email;
             req.user_password = docs[0].password;
+            next();
         }
     })
-    next();
 })
 
 //Checks if password is confirmed properly before continuing
@@ -145,7 +148,6 @@ app.post("/SignUp", (req, res) => {
                     .then(data => {
                         //Renders success page if passwords match
                         res.render("Message", { message: "Your sign up was successful", redirect: "Log in" });
-                        console.log("Sign up was successful");
                     });
             } else {
                 //Renders failure page if passwords don't match
