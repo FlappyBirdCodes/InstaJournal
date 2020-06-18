@@ -4,4 +4,4 @@ of users, hence the name InstaJournal. Users can make an account and sign in. Wh
 redirected to a rendered template of their homepage. This homepage is rendered with the express-handlebars library, meaning that the page
 will be different for each user. 
 
-Once the user is on their homepage, they can now make a journal. Once they have submited the journal, their request will be processed on the backend, saving their journal. The user can perform all sorts of different action, such as creating a new journal, editing an existing journal or deleting a journal. When the user logs out, the database, hosted on the cloud with mongoDB, remains unchanged.
+Once the user is on their homepage, they can now make a journal. Once they have submited the journal, their request will be processed on the backend, saving their journal. The user can perform all sorts of different actions, such as creating a new journal, editing an existing journal or deleting a journal. When the user logs out, the database, hosted on the cloud with mongoDB, remains unchanged.
